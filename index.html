@@ -68,7 +68,6 @@
 
     <script>
     function calculateLove() {
-        // Get the names exactly as entered by the user
         const name1 = document.getElementById("name1").value.trim();
         const name2 = document.getElementById("name2").value.trim();
 
@@ -77,20 +76,22 @@
             return;
         }
 
-        // Sort names alphabetically to ensure consistency when concatenating
-        const sortedNames = [name1, name2].sort().join(""); // Sorts the names and joins them
+        const combinedNames0 = name1.toLowerCase() + name2.toLowerCase();
+        const combinedNames1 = name2.toLowerCase() + name1.toLowerCase();
 
-        // Hash function to create a deterministic score based on sorted names
-        let hash = 0;
-        for (let i = 0; i < sortedNames.length; i++) {
-            hash = sortedNames.charCodeAt(i) + ((hash << 5) - hash);
-            hash = hash & hash; // Convert to 32-bit integer
+        let hash0 = 0;
+        for (let i = 0; i < combinedNames0.length; i++) {
+            hash0 = combinedNames0.charCodeAt(i) + ((hash0 << 5) - hash0);
+            hash0 = hash0 & hash0;
+        }
+        let hash1 = 0;
+        for (let i = 0; i < combinedNames1.length; i++) {
+            hash1 = combinedNames1.charCodeAt(i) + ((hash1 << 5) - hash1);
+            hash1 = hash1 & hash1;
         }
 
-        // Map the hash value to a love score between 0 and 100
-        const loveScore = Math.abs(hash) % 101;
+        const loveScore = Math.abs(hash0 + hash1) % 101;
 
-        // Display the result with the exact capitalization from the inputs
         document.getElementById("result").textContent = `💘 Love Score for ${name1} and ${name2} is ${loveScore}%!`;
     }
 </script>
