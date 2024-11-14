@@ -77,13 +77,13 @@
             return;
         }
 
-        // Use lowercase versions only for hashing to make the score consistent regardless of case
-        const combinedNamesForHash = name1.toLowerCase() + name2.toLowerCase();
+        // Sort names alphabetically to ensure consistency when concatenating
+        const sortedNames = [name1, name2].sort().join(""); // Sorts the names and joins them
 
-        // Hash function to create a deterministic score based on combined names
+        // Hash function to create a deterministic score based on sorted names
         let hash = 0;
-        for (let i = 0; i < combinedNamesForHash.length; i++) {
-            hash = combinedNamesForHash.charCodeAt(i) + ((hash << 5) - hash);
+        for (let i = 0; i < sortedNames.length; i++) {
+            hash = sortedNames.charCodeAt(i) + ((hash << 5) - hash);
             hash = hash & hash; // Convert to 32-bit integer
         }
 
