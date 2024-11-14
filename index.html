@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffcccb;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff007f;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff007f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ff66a3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff007f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Love Calculator ❤️</h1>
+        <p>Enter two names to calculate your love score!</p>
+        <input type="text" id="name1" placeholder="Your Name">
+        <input type="text" id="name2" placeholder="Their Name">
+        <button onclick="calculateLove()">Calculate Love 💖</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+    function calculateLove() {
+        const name1 = document.getElementById("name1").value.trim().toLowerCase();
+        const name2 = document.getElementById("name2").value.trim().toLowerCase();
+
+        if (name1 === "" || name2 === "") {
+            document.getElementById("result").textContent = "Please enter both names!";
+            return;
+        }
+
+        // Combine names to create a unique pair identifier
+        const combinedNames = name1 + name2;
+
+        // Hash function to create a deterministic score based on combinedNames
+        let hash = 0;
+        for (let i = 0; i < combinedNames.length; i++) {
+            hash = combinedNames.charCodeAt(i) + ((hash << 5) - hash);
+            hash = hash & hash; // Convert to 32bit integer
+        }
+
+        // Map the hash value to a love score between 0 and 100
+        const loveScore = Math.abs(hash) % 101;
+
+        document.getElementById("result").textContent = `💘 Love Score for ${name1} and ${name2} is ${loveScore}%!`;
+    }
+</script>
+
+</body>
+</html>
