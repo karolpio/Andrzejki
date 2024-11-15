@@ -7,52 +7,85 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
     <style>
-        body {
-            background: linear-gradient(135deg, #ffccde, #fc3fc3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            text-align: center;
-        }
-        h1 {
-            color: #ff007f;
-        }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #ff007f;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #ff66a3;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ff007f;
-            font-weight: bold;
-        }
-    </style>
+    /* Base styles */
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        background-color: #ff9a9e; /* Fallback color */
+    }
+
+    /* Wavy background layers */
+    .wave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 154, 158, 0.6), transparent),
+                    radial-gradient(circle at 60% 40%, rgba(250, 208, 196, 0.6), transparent),
+                    radial-gradient(circle at 40% 60%, rgba(255, 191, 206, 0.6), transparent);
+        opacity: 0.6;
+        animation: wave 6s infinite alternate;
+        transform: translateX(-25%) translateY(-25%);
+    }
+
+    .wave:nth-child(2) {
+        animation-duration: 8s;
+        opacity: 0.4;
+    }
+
+    .wave:nth-child(3) {
+        animation-duration: 10s;
+        opacity: 0.3;
+    }
+
+    /* Wavy animation */
+    @keyframes wave {
+        0% { transform: translateX(-25%) translateY(-25%) scale(1); }
+        50% { transform: translateX(0) translateY(0) scale(1.1); }
+        100% { transform: translateX(-25%) translateY(-25%) scale(1); }
+    }
+
+    /* Calculator box styles */
+    .calculator-container {
+        position: relative;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        z-index: 1;
+    }
+
+    #calculate-button {
+        background-color: #ff4081;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #calculate-button:hover {
+        background-color: #e91e63;
+    }
+
+    h1 {
+        color: #ff4081;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #ff4081;
+    }
+</style>
 </head>
 <body>
 
