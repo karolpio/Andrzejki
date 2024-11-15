@@ -1,99 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Calculator</title>
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
-<style>
-body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <style>
+        body {
             background: linear-gradient(135deg, #ffccde, #fc3fc3);
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-margin: 0;
-font-family: Arial, sans-serif;
-}
-.container {
-background-color: white;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-max-width: 400px;
-text-align: center;
-}
-h1 {
-color: #ff007f;
-}
-input[type="text"] {
-width: 80%;
-padding: 10px;
-margin: 10px 0;
-border: 1px solid #ddd;
-border-radius: 5px;
-}
-button {
-background-color: #ff007f;
-color: white;
-padding: 10px 20px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-size: 16px;
-}
-button:hover {
-background-color: #ff66a3;
-}
-.result {
-margin-top: 20px;
-font-size: 18px;
-color: #ff007f;
-font-weight: bold;
-}
-</style>
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff007f;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff007f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #ff66a3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff007f;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-<h1>Love Calculator ❤️</h1>
-<p>Enter two names to calculate your love score!</p>
-<input type="text" id="name1" placeholder="Your Name">
-<input type="text" id="name2" placeholder="Their Name">
-<button onclick="calculateLove()">Calculate Love 💖</button>
-<div class="result" id="result"></div>
-</div>
+    <div class="container">
+        <h1>Love Calculator ❤️</h1>
+        <p>Enter two names to calculate your love score!</p>
+        <input type="text" id="name1" placeholder="Your Name">
+        <input type="text" id="name2" placeholder="Their Name">
+        <button onclick="calculateLove()">Calculate Love 💖</button>
+        <div class="result" id="result"></div>
+    </div>
 
-<script>
-function calculateLove() {
-const name1 = document.getElementById("name1").value.trim();
-const name2 = document.getElementById("name2").value.trim();
+    <script>
+    function calculateLove() {
+        const name1 = document.getElementById("name1").value.trim();
+        const name2 = document.getElementById("name2").value.trim();
 
-if (name1 === "" || name2 === "") {
-document.getElementById("result").textContent = "Please enter both names!";
-return;
-}
+        if (name1 === "" || name2 === "") {
+            document.getElementById("result").textContent = "Please enter both names!";
+            return;
+        }
 
-const combinedNames0 = name1.toLowerCase() + name2.toLowerCase();
-const combinedNames1 = name2.toLowerCase() + name1.toLowerCase();
+        const combinedNames0 = name1.toLowerCase() + name2.toLowerCase();
+        const combinedNames1 = name2.toLowerCase() + name1.toLowerCase();
 
-let hash0 = 0;
-for (let i = 0; i < combinedNames0.length; i++) {
-hash0 = combinedNames0.charCodeAt(i) + ((hash0 << 5) - hash0);
-hash0 = hash0 & hash0;
-}
-let hash1 = 0;
-for (let i = 0; i < combinedNames1.length; i++) {
-hash1 = combinedNames1.charCodeAt(i) + ((hash1 << 5) - hash1);
-hash1 = hash1 & hash1;
-}
+        let hash0 = 0;
+        for (let i = 0; i < combinedNames0.length; i++) {
+            hash0 = combinedNames0.charCodeAt(i) + ((hash0 << 5) - hash0);
+            hash0 = hash0 & hash0;
+        }
+        let hash1 = 0;
+        for (let i = 0; i < combinedNames1.length; i++) {
+            hash1 = combinedNames1.charCodeAt(i) + ((hash1 << 5) - hash1);
+            hash1 = hash1 & hash1;
+        }
 
-const loveScore = Math.abs(hash0 + hash1) % 101;
+        const loveScore = Math.abs(hash0 + hash1) % 101;
 
-document.getElementById("result").textContent = `💘 Love Score for ${name1} and ${name2} is ${loveScore}%!`;
-}
+        document.getElementById("result").textContent = `💘 Love Score for ${name1} and ${name2} is ${loveScore}%!`;
+    }
 </script>
 
 </body>
+</html>
